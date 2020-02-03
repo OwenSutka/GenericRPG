@@ -4,27 +4,37 @@ using System;
 using System.Drawing;
 using System.Collections.Generic;
 
+
 namespace GameLibrary {
-  public class Map {
-    private int[,] layout;
+    // This is the map class and is used to show the map to the screen. Only need one map object at a time
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public class Map {
+    // Initialize a bunch of variables and constants to be used
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Constants
     private const int TOP_PAD = 10;
     private const int BOUNDARY_PAD = 5;
     private const int BLOCK_SIZE = 50;
+    // Variables
+    private int[,] layout;
     public double encounterChance;
     private Random rand;
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
 
+    // getters and setters for where the character will begin initially and the number of rows and columns in the map
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public int CharacterStartRow { get; private set; }
     public int CharacterStartCol { get; private set; }
     private int NumRows { get { return layout.GetLength(0); } }
     private int NumCols { get { return layout.GetLength(1); } }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="mapFile"></param>
-    /// <param name="grpMap"></param>
-    /// <param name="LoadImg"></param>
-    /// <returns></returns>
+    
+    // NEED TO BREAK UP AND SIMPLIFY. Cherry thought it would be cool to do 20 things at once. This program is a mess
+    // and needs some work. We need to just load the map (calls an enum), send that to a display function, which can
+    // then call the character (if not there initialize) and then place it on the map at the coords specified.
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Character LoadMap(string mapFile, GroupBox grpMap, Func<string, Bitmap> LoadImg) {
       // declare and initialize locals
       int top = TOP_PAD;
@@ -84,7 +94,11 @@ namespace GameLibrary {
       // return Character object from reading map
       return character;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    // This places the texture into each cell. Can be simplified and use ENUM instead of numbers. is a messsssss...
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private PictureBox CreateMapCell(int legendValue, Func<string, Bitmap> LoadImg) {
       PictureBox result = null;
       switch (legendValue) {
@@ -95,6 +109,7 @@ namespace GameLibrary {
         // wall
         case 1:
           result = new PictureBox() {
+            // make all this a function which can process everything better
             BackgroundImage = LoadImg("wall"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
@@ -144,7 +159,12 @@ namespace GameLibrary {
       }
       return result;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
 
+    // Again cherry tries to do too much at once. Needs to be a simple check if it is a valid position. Can then add more functions after
+    // if needed, but right now this needs a clean up.
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool IsValidPos(Position pos) {
       if (pos.row < 0 || pos.row >= NumRows ||
           pos.col < 0 || pos.col >= NumCols ||
@@ -161,9 +181,14 @@ namespace GameLibrary {
 
       return true;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    // Resets your position to the top left. not that great, could be worked on but I don't know why I would need this
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Position RowColToTopLeft(Position p) {
       return new Position(p.row * BLOCK_SIZE + TOP_PAD, p.col * BLOCK_SIZE + BOUNDARY_PAD);
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   }
 }
