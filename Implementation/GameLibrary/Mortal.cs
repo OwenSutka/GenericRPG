@@ -1,7 +1,10 @@
 ﻿using System;
 
 namespace GameLibrary {
+  // Generic character class. Will be useful when applying to a 2D space. Used to define characters and enemies
   public class Mortal {
+    // The constants that must be defined for a character startup. Allows getters and setters to work properly
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     #region Constants
     private const float INIT_HEALTH = 100;
     private const float INIT_STR = 10;
@@ -19,7 +22,11 @@ namespace GameLibrary {
 
     private const float SIMPLEATTACK_RANDOM_AMT = 0.25f;
     #endregion
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
 
+    // Getters and setters for all the variable types that define a character
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public string Name { get; protected set; }
     public int Level { get; protected set; }
     public float MaxHealth { get; protected set; }
@@ -30,15 +37,25 @@ namespace GameLibrary {
     public float Def { get; protected set; }
     public float Luck { get; protected set; }
     public float Speed { get; protected set; }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // Just a random number to define randomness in the game. Can be used many ways. Used by cherry to randomize monster appearances
     private Random rand;
+        
 
+    // The generic character initialization function
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Mortal(string name, int level) {
       Name = name;
       ResetStats();
       SetLevel(level);
       rand = new Random();
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+
+    // Sets all stats to the initial ones to (or the max health/mana desired)
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public virtual void ResetStats() {
       Level = 1;
       MaxHealth = INIT_HEALTH;
@@ -50,11 +67,21 @@ namespace GameLibrary {
       Luck = INIT_LUCK;
       Speed = INIT_SPEED;
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+
+    // Changes the mortal's level to the set level
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void SetLevel(int level) {
       for (int i = 1; i < level; i++) {
         LevelUp();
       }
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+
+    // Iterates the level by one, increases the health and mana by a set amount. Also increases all other stats
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public virtual void LevelUp() {
       // level increases
       Level++;
@@ -71,10 +98,20 @@ namespace GameLibrary {
       Luck += LVLINC_LUCK;
       Speed += LVLINC_SPEED;
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // Sets health and mana to its max. Unused by cherry, but okay
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void RefillHealthAndMana() {
       Health = MaxHealth;
       Mana = MaxMana;
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+
+    // Cherry's simple attack function. Needs an overhaul
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void SimpleAttack(Mortal receiver) {
       float baseDamage = Math.Abs(Str * 1.2f - receiver.Def);
       float randMax = 1 + SIMPLEATTACK_RANDOM_AMT;
