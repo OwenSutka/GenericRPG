@@ -1,0 +1,32 @@
+
+
+
+build a game where I crash land in a field
+No memory of who I am
+I am a robot
+my initial goal is given in the top right
+I can see my stats in the top left, including health
+Instead of a seperate screen for battles, I want to be able to punch and shoot projectiles
+
+
+I'm in my own source code
+I start as a boy
+There's a bug in the code
+There's a bunch of different bosses which are different structures
+factory, observer, singleton/multiton
+
+As I beat boss after boss I get new abilities and I become more and more of a robot
+- hit that existential crisis
+
+end is where I wake up as a boy robot who fell down the stairs and has been recovering in a hospital of sorts. Last part of the level is for me to escape the house and be free
+
+I fight the robotic desires to be stronger and decide to become just a boy in the end
+
+
+name: bug in the system
+start level: everything is white and as I move through the levels and add to my robot features, pieces begin to come back
+Attacks: can shoot a force across the map until it hits a wall or an enemy, enemies can be super simple and walk aimlessly
+	 can't initially attack, learn how to punch with an upgrade. Opponents need to be able to attack too
+Controls can be scrambled sometimes due to a "source code failure" triggered by some enemy attacks
+
+turn based system or free roam?
