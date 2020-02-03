@@ -119,5 +119,6 @@ namespace GameLibrary {
       float randMult = (float)(rand.NextDouble() * (randMax - randMin)) + randMin;
       receiver.Health -= (baseDamage * randMult);
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
   }
 }
