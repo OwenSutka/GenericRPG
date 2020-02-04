@@ -49,7 +49,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Mortal.cs" />
-    <Compile Include="MoveDir.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
