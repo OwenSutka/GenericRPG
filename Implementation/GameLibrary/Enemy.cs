@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 
 namespace GameLibrary {
+  // This is the enemy class. It was used by Cherry to determine and use the enemies. Needs to be completely redone.
   public class Enemy : Mortal {
     private const float MAX_XP_DROP = 35;
     private const float MIN_XP_DROP = 15;
