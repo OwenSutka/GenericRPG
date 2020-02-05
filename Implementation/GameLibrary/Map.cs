@@ -18,7 +18,6 @@ namespace GameLibrary {
     // Variables
     private int[,] layout;
     public double encounterChance;
-    private Random rand;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
 
@@ -67,7 +66,7 @@ namespace GameLibrary {
             pb.Left = left;
             grpMap.Controls.Add(pb);
           }
-          if (val == 2) {
+          if (val == 1) {
             CharacterStartRow = i;
             CharacterStartCol = j;
             character = new Character(pb, new Position(i, j), this);
@@ -88,7 +87,6 @@ namespace GameLibrary {
 
       // initialize for game
       encounterChance = 0.15;
-      rand = new Random();
       Game.GetGame().ChangeState(GameState.ON_MAP);
 
       // return Character object from reading map
@@ -103,14 +101,11 @@ namespace GameLibrary {
       PictureBox result = null;
       switch (legendValue) {
         // walkable
-        case 0:
-          break;
-
         // wall
         case 1:
           result = new PictureBox() {
             // make all this a function which can process everything better
-            BackgroundImage = LoadImg("wall"),
+            BackgroundImage = LoadImg("character"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
@@ -120,7 +115,7 @@ namespace GameLibrary {
         // character
         case 2:
           result = new PictureBox() {
-            BackgroundImage = LoadImg("character"),
+            BackgroundImage = LoadImg("wall"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
@@ -130,7 +125,7 @@ namespace GameLibrary {
         // next level
         case 3:
           result = new PictureBox() {
-            BackgroundImage = LoadImg("level2"),
+            BackgroundImage = LoadImg("Wall1ForGenericRPG"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
@@ -156,7 +151,57 @@ namespace GameLibrary {
             Height = BLOCK_SIZE
           };
           break;
-      }
+        // quit
+        case 6:
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+        // quit
+        case 7:
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+        // quit
+        case 8:
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+        // quit
+        case 9:
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+        // quit
+        case 0:
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+            }
       return result;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -168,17 +213,9 @@ namespace GameLibrary {
     public bool IsValidPos(Position pos) {
       if (pos.row < 0 || pos.row >= NumRows ||
           pos.col < 0 || pos.col >= NumCols ||
-          layout[pos.row, pos.col] == 1) {
+          layout[pos.row, pos.col] == 3) {
         return false;
       }
-      if (rand.NextDouble() < encounterChance) {
-        encounterChance = 0.15;
-        Game.GetGame().ChangeState(GameState.FIGHTING);
-      }
-      else {
-        encounterChance += 0.10;
-      }
-
       return true;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

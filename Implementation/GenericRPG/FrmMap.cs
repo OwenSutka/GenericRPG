@@ -44,10 +44,6 @@ namespace GenericRPG {
       }
       if (dir != MoveDir.NO_MOVE) {
         character.Move(dir);
-        if (game.State == GameState.FIGHTING) {
-          FrmArena frmArena = new FrmArena();
-          frmArena.Show();
-        }
       }
     }
   }

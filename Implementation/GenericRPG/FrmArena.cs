@@ -27,7 +27,7 @@ namespace GenericRPG {
 
       game = Game.GetGame();
       character = game.Character;
-      enemy = new Enemy(rand.Next(character.Level + 1), Resources.enemy);
+      enemy = new Enemy(rand.Next(character.Level + 1), Resources.EnemyScientist1); // Where picture is changed
 
       // stats
       UpdateStats();
