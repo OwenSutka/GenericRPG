@@ -114,8 +114,19 @@
     <None Include="Resources\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\StartingPoint.png" />
+    <None Include="Resources\Ramp2.png" />
+    <None Include="Resources\Ramp.png" />
+    <None Include="Resources\Linoleum2.png" />
+    <None Include="Resources\Linoleum2.png.png" />
+    <None Include="Resources\Linoleum1.png" />
     <None Include="Resources\Wall1ForGenericRPG.png" />
     <None Include="Resources\EnemyScientist1.png" />
+    <None Include="Resources\Desk1.png" />
+    <None Include="Resources\Desk2.png" />
+    <None Include="Resources\Desk3.png" />
+    <None Include="Resources\Desk4.png" />
+    <None Include="Resources\Chair.png" />
     <Content Include="Resources\levelup.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

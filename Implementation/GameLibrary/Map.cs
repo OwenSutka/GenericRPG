@@ -27,6 +27,7 @@ namespace GameLibrary {
     public int CharacterStartCol { get; private set; }
     private int NumRows { get { return layout.GetLength(0); } }
     private int NumCols { get { return layout.GetLength(1); } }
+    public string fileName = "";
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     
@@ -58,15 +59,15 @@ namespace GameLibrary {
       foreach (string mapLine in mapLines) {
         int j = 0;
         foreach (char c in mapLine) {
-          int val = c - '0';
-          layout[i, j] = (val == 1 ? 1 : 0);
+          char val = c ;
+          layout[i, j] = (val == '1' ? 1 : 0);
           PictureBox pb = CreateMapCell(val, LoadImg);
           if (pb != null) {
             pb.Top = top;
             pb.Left = left;
             grpMap.Controls.Add(pb);
           }
-          if (val == 1) {
+          if (val == '1') {
             CharacterStartRow = i;
             CharacterStartCol = j;
             character = new Character(pb, new Position(i, j), this);
@@ -92,20 +93,20 @@ namespace GameLibrary {
       // return Character object from reading map
       return character;
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    // This places the texture into each cell. Can be simplified and use ENUM instead of numbers. is a messsssss...
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private PictureBox CreateMapCell(int legendValue, Func<string, Bitmap> LoadImg) {
+        // This places the texture into each cell.
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private PictureBox CreateMapCell(char legendValue, Func<string, Bitmap> LoadImg) {
       PictureBox result = null;
       switch (legendValue) {
         // walkable
         // wall
-        case 1:
-          result = new PictureBox() {
+        case '1':
+           result = new PictureBox() {
             // make all this a function which can process everything better
-            BackgroundImage = LoadImg("character"),
+            BackgroundImage = LoadImg("StartingPoint"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
@@ -113,9 +114,18 @@ namespace GameLibrary {
           break;
 
         // character
-        case 2:
+        case '2':
           result = new PictureBox() {
-            BackgroundImage = LoadImg("wall"),
+            BackgroundImage = LoadImg("Ramp"),
+            BackgroundImageLayout = ImageLayout.Stretch,
+            Width = BLOCK_SIZE,
+            Height = BLOCK_SIZE
+          };
+          break;
+
+        case 'c':
+          result = new PictureBox() {
+            BackgroundImage = LoadImg("Ramp2"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
@@ -123,7 +133,7 @@ namespace GameLibrary {
           break;
 
         // next level
-        case 3:
+        case '3':
           result = new PictureBox() {
             BackgroundImage = LoadImg("Wall1ForGenericRPG"),
             BackgroundImageLayout = ImageLayout.Stretch,
@@ -133,9 +143,9 @@ namespace GameLibrary {
           break;
 
         // boss
-        case 4:
+        case '4':
           result = new PictureBox() {
-            BackgroundImage = LoadImg("fightboss"),
+            BackgroundImage = LoadImg("Linoleum1"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
@@ -143,56 +153,74 @@ namespace GameLibrary {
           break;
 
         // quit
-        case 5:
+        case '5':
           result = new PictureBox() {
-            BackgroundImage = LoadImg("quitgame"),
+            BackgroundImage = LoadImg("Linoleum2"),
             BackgroundImageLayout = ImageLayout.Stretch,
             Width = BLOCK_SIZE,
             Height = BLOCK_SIZE
           };
           break;
         // quit
-        case 6:
+        case '6':
             result = new PictureBox()
             {
-                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImage = LoadImg("Linoleum1"),
                 BackgroundImageLayout = ImageLayout.Stretch,
                 Width = BLOCK_SIZE,
                 Height = BLOCK_SIZE
             };
             break;
         // quit
-        case 7:
+        case '7':
             result = new PictureBox()
             {
-                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImage = LoadImg("Desk2"),
                 BackgroundImageLayout = ImageLayout.Stretch,
                 Width = BLOCK_SIZE,
                 Height = BLOCK_SIZE
             };
             break;
         // quit
-        case 8:
+        case '8':
             result = new PictureBox()
             {
-                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImage = LoadImg("Desk1"),
                 BackgroundImageLayout = ImageLayout.Stretch,
                 Width = BLOCK_SIZE,
                 Height = BLOCK_SIZE
             };
             break;
         // quit
-        case 9:
+        case '9':
             result = new PictureBox()
             {
-                BackgroundImage = LoadImg("quitgame"),
+                BackgroundImage = LoadImg("Chair"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+        case 'a':
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("Desk3"),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Width = BLOCK_SIZE,
+                Height = BLOCK_SIZE
+            };
+            break;
+        case 'b':
+            result = new PictureBox()
+            {
+                BackgroundImage = LoadImg("Desk4"),
                 BackgroundImageLayout = ImageLayout.Stretch,
                 Width = BLOCK_SIZE,
                 Height = BLOCK_SIZE
             };
             break;
         // quit
-        case 0:
+        case '0':
             result = new PictureBox()
             {
                 BackgroundImage = LoadImg("quitgame"),
@@ -207,13 +235,16 @@ namespace GameLibrary {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
 
+
+    
+
     // Again cherry tries to do too much at once. Needs to be a simple check if it is a valid position. Can then add more functions after
     // if needed, but right now this needs a clean up.
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool IsValidPos(Position pos) {
       if (pos.row < 0 || pos.row >= NumRows ||
           pos.col < 0 || pos.col >= NumCols ||
-          layout[pos.row, pos.col] == 3) {
+          layout[pos.row, pos.col] == '3') {
         return false;
       }
       return true;
