@@ -95,6 +95,7 @@ namespace GameLibrary
         {
             base.ResetStats();
             XP = 0;
+            DialogResult response = MessageBox.Show("You wake up in the corner of a clean room. Everything is white and the glare hurts your eyes.\nYour eyes begin to focus and you notice that you are in a lab, and the hum of computers is loud. You hear some men in white rushing your way.\n\nYou need to figure out what you are doing here, and get away safely", MessageBoxButtons.OK.ToString());
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
