@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace GameLibrary
 {
@@ -17,17 +18,6 @@ namespace GameLibrary
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Enum used for moving the character around
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public enum MoveDir
-    {
-        NO_MOVE,
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     // this is the character class. Takes from the Mortal class
@@ -129,21 +119,18 @@ namespace GameLibrary
                     newPos.col++;
                     break;
             }
-            if (map.IsValidPos(newPos))
+            if (map.IsNextLevel(newPos))
+            {
+                Console.WriteLine("Here");
+                return Task.LEAVE_LEVEL;
+            }
+            else if (map.IsValidPos(newPos))
             {
                 pos = newPos;
                 Position topleft = map.RowColToTopLeft(pos);
                 Pic.Left = topleft.col;
                 Pic.Top = topleft.row;
                 return Task.MOVE;
-            }
-            else if (map.IsNextLevel(newPos))
-            {
-                return Task.LEAVE_LEVEL;
-            }
-            else if (map.TryingToExit(newPos))
-            {
-                return Task.EXIT_GAME;
             }
             return Task.NO_TASK;//false
         }

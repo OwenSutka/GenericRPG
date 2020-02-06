@@ -73,6 +73,10 @@ namespace GameLibrary
                     {
                         layout[i, j] = 1;
                     }
+                    else if (val == '1')
+                    {
+                        layout[i, j] = 2;
+                    }
                     else
                     {
                         layout[i, j] = 0;
@@ -304,12 +308,8 @@ namespace GameLibrary
 
         public bool IsNextLevel(Position pos)
         {
-            return (layout[pos.row, pos.col] == '1');
+            return (layout[pos.row, pos.col] == 2);
         }
 
-        public bool TryingToExit(Position pos)
-        {
-            return (layout[pos.row, pos.col] == '5');
-        }
     }
 }

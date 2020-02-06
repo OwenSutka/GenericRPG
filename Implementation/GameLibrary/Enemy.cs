@@ -25,7 +25,7 @@ namespace GameLibrary
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private static readonly Random rand = new Random();
         private static readonly List<string> names = new List<string>() {
-      "Wily", "Bob", "Dr. Light", "WallCrusher"
+      "Dr. Acula", "Dr. Brown", "Dr. Pink", "Dr. Purple", "Dr. Red", "Dr. Blue", "Dr. Black", "Dr. White","Dr. Green"
     };
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
