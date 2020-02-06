@@ -191,9 +191,19 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grass1 {
+            get {
+                object obj = ResourceManager.GetObject("grass1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 333333333333333333333
-        ///3m4488873878344483883
-        ///344444443499343443493
+        ///3z4488873878344483883
+        ///344414443499343443493
         ///344444443433343433493
         ///344433343434443438483
         ///344434443434333434433
@@ -218,8 +228,8 @@ namespace GenericRPG.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 333333333333333333333
-        ///3m4488873878344483883
-        ///344444443499343443493
+        ///3z4488873878344483883
+        ///344414443499343443493
         ///344444443433343433493
         ///344433343434443438483
         ///344434443434333434433
@@ -328,6 +338,16 @@ namespace GenericRPG.Properties {
         internal static System.Drawing.Bitmap Wall1ForGenericRPG {
             get {
                 object obj = ResourceManager.GetObject("Wall1ForGenericRPG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap water1 {
+            get {
+                object obj = ResourceManager.GetObject("water1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

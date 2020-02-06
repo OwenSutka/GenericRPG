@@ -18,6 +18,8 @@ namespace GameLibrary
         private const int TOP_PAD = 2;
         private const int BOUNDARY_PAD = 1;
         private const int BLOCK_SIZE = 40;
+        public int DialogChoice = '1';
+
         // Variables
         private int[,] layout;
         public double encounterChance;
@@ -69,7 +71,7 @@ namespace GameLibrary
                 foreach (char c in mapLine)
                 {
                     char val = c;
-                    if (val == '3' || val == '7' || val == '8' || val == '9' || val == 'a')
+                    if (val == '3' || val == '7' || val == '8' || val == '9' || val == 'a' || val == 'w')
                     {
                         layout[i, j] = 1;
                     }
@@ -118,6 +120,32 @@ namespace GameLibrary
             // return Character object from reading map
 
             character = new Character(characterPB, new Position(CharacterStartRow, CharacterStartCol), this);
+            DialogChoice = mapFile[15];
+            Console.WriteLine(mapFile);
+            if (DialogChoice == '1')
+            {
+                DialogResult response = MessageBox.Show("You wake up in the corner of a clean room. Everything is white and the glare hurts your eyes.\nYour eyes begin to focus and you notice that you are in a lab, and the hum of computers is loud. You hear some men in white lab coats rushing your way.\n\nYou need to figure out what you are doing here, and get away safely", MessageBoxButtons.OK.ToString());
+            }
+            else if (DialogChoice == '2')
+            {
+                DialogResult response = MessageBox.Show("You enter another lab room, it seems that there are even more scientists in here than in the last room.\nYou need to find the way out. Why is this place such a maze?", MessageBoxButtons.OK.ToString());
+            }
+            else if (DialogChoice == '3')
+            {
+                DialogResult response = MessageBox.Show("This lab has water! There is definitely something not right about this place...Why are all the scientists mentioning experiment #2422?", MessageBoxButtons.OK.ToString());
+            }
+            else if (DialogChoice == '4')
+            {
+                DialogResult response = MessageBox.Show("Windows! The way to freedom is near. But why does it seem that I am blocked by a wall?", MessageBoxButtons.OK.ToString());
+            }
+            else if (DialogChoice == '5')
+            {
+                DialogResult response = MessageBox.Show("There's the door! I can't stay here any longer. They will kill me or experiment on me. I have to leave as fast as possible before I get caught!", MessageBoxButtons.OK.ToString());
+            }
+            else if (DialogChoice == '6')
+            {
+                DialogResult response = MessageBox.Show("It was all hopeless. The entire time I was just experiment 2422. Oh no, they're coming to reset me. I'm not going down that easy! One last sta-", MessageBoxButtons.OK.ToString());
+            }
             return character;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,6 +287,42 @@ namespace GameLibrary
                     result = new PictureBox()
                     {
                         BackgroundImage = LoadImg("quitgame"),
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Width = BLOCK_SIZE,
+                        Height = BLOCK_SIZE
+                    };
+                    break;
+                case 'h':
+                    result = new PictureBox()
+                    {
+                        BackgroundImage = LoadImg("Desk4"),
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Width = BLOCK_SIZE,
+                        Height = BLOCK_SIZE
+                    };
+                    break;
+                case 'w':
+                    result = new PictureBox()
+                    {
+                        BackgroundImage = LoadImg("water1"),
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Width = BLOCK_SIZE,
+                        Height = BLOCK_SIZE
+                    };
+                    break;
+                case 'f':
+                    result = new PictureBox()
+                    {
+                        BackgroundImage = LoadImg("Wall1ForGenericRPG"),
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Width = BLOCK_SIZE,
+                        Height = BLOCK_SIZE
+                    };
+                    break;
+                case 'g':
+                    result = new PictureBox()
+                    {
+                        BackgroundImage = LoadImg("grass1"),
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Width = BLOCK_SIZE,
                         Height = BLOCK_SIZE

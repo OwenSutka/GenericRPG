@@ -114,6 +114,7 @@
     <None Include="Resources\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\water1.png" />
     <None Include="Resources\StartingPoint.png" />
     <None Include="Resources\Ramp2.png" />
     <None Include="Resources\Ramp.png" />
@@ -129,6 +130,7 @@
     <None Include="Resources\Chair.png" />
     <None Include="Resources\Character1.png" />
     <None Include="Resources\level1.txt" />
+    <None Include="Resources\grass1.png" />
     <Content Include="Resources\levelup.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
