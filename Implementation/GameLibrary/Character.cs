@@ -41,7 +41,7 @@ namespace GameLibrary
 
         // variables for the map and the position struct
         public Position pos;
-        private Map map;
+        public Map map;
 
 
         // creates the character and initializes variables. Need to split from map because dependencies are INSANE in this program
@@ -54,6 +54,8 @@ namespace GameLibrary
             ShouldLevelUp = false;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
 
 
         // how to add experience to the character
@@ -62,9 +64,13 @@ namespace GameLibrary
         {
             XP += amount;
             // every 100 experience points you gain a level
-            if ((int)XP / 100 >= Level)
+            if (XP / 100 >= Level)
             {
-                ShouldLevelUp = true;
+                Level = Level + 1;
+                XP = 0;
+                this.LevelUp();
+
+                //ShouldLevelUp = true;
             }
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +111,7 @@ namespace GameLibrary
 
         // the function that moves the character on the map. Make sure is strong enough to do this right
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void Move(MoveDir dir)
+        public Task Move(MoveDir dir)
         {
             Position newPos = pos;
             switch (dir)
@@ -129,7 +135,17 @@ namespace GameLibrary
                 Position topleft = map.RowColToTopLeft(pos);
                 Pic.Left = topleft.col;
                 Pic.Top = topleft.row;
+                return Task.MOVE;
             }
+            else if (map.IsNextLevel(newPos))
+            {
+                return Task.LEAVE_LEVEL;
+            }
+            else if (map.TryingToExit(newPos))
+            {
+                return Task.EXIT_GAME;
+            }
+            return Task.NO_TASK;//false
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

@@ -103,6 +103,16 @@ namespace GenericRPG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Character1 {
+            get {
+                object obj = ResourceManager.GetObject("Character1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Desk1 {
             get {
                 object obj = ResourceManager.GetObject("Desk1", resourceCulture);
@@ -177,6 +187,58 @@ namespace GenericRPG.Properties {
             get {
                 object obj = ResourceManager.GetObject("gameover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 333333333333333333333
+        ///3m4488873878344483883
+        ///344444443499343443493
+        ///344444443433343433493
+        ///344433343434443438483
+        ///344434443434333434433
+        ///344434333444344434333
+        ///334334443434343334343
+        ///334333343434443874343
+        ///334444344434333444343
+        ///333334399934444433343
+        ///3344443aaa33333434443
+        ///333343333334444444333
+        ///377443444444333333333
+        ///399443333343344438883
+        ///344443887843343439993
+        ///333333999944443444413
+        ///333333333333333333333.
+        /// </summary>
+        internal static string level {
+            get {
+                return ResourceManager.GetString("level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 333333333333333333333
+        ///3m4488873878344483883
+        ///344444443499343443493
+        ///344444443433343433493
+        ///344433343434443438483
+        ///344434443434333434433
+        ///344434333444344434333
+        ///334334443434343334343
+        ///334333343434443874343
+        ///334444344434333444343
+        ///333334399934444433343
+        ///3344443aaa33333434443
+        ///333343333334444444333
+        ///377443444444333333333
+        ///399443333343344438883
+        ///344443887843343439993
+        ///333333999944443444413
+        ///333333333333333333333.
+        /// </summary>
+        internal static string level1 {
+            get {
+                return ResourceManager.GetString("level1", resourceCulture);
             }
         }
         

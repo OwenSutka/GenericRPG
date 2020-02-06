@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="Save.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Task.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Mortal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

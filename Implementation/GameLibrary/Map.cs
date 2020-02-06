@@ -15,12 +15,13 @@ namespace GameLibrary
         // Initialize a bunch of variables and constants to be used
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constants
-        private const int TOP_PAD = 10;
-        private const int BOUNDARY_PAD = 5;
-        private const int BLOCK_SIZE = 50;
+        private const int TOP_PAD = 2;
+        private const int BOUNDARY_PAD = 1;
+        private const int BLOCK_SIZE = 40;
         // Variables
         private int[,] layout;
         public double encounterChance;
+        public List<string> mapLines = new List<string>();
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -28,41 +29,14 @@ namespace GameLibrary
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public int CharacterStartRow { get; private set; }
         public int CharacterStartCol { get; private set; }
+
+        public PictureBox CharacterPicture { get; private set; }
         private int NumRows { get { return layout.GetLength(0); } }
         private int NumCols { get { return layout.GetLength(1); } }
+        public string LevelName { get; private set; }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        // NEED TO BREAK UP AND SIMPLIFY. Cherry thought it would be cool to do 20 things at once. This program is a mess
-        // and needs some work. We need to just load the map (calls an enum), send that to a display function, which can
-        // then call the character (if not there initialize) and then place it on the map at the coords specified.
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void LoadMap2(string mapFile, GroupBox grpBox, Func<string, Bitmap> LoadImg)
-        {
-            int top = TOP_PAD;
-            int left = BOUNDARY_PAD;
-
-            PictureBox pb = null;
-            List<string> mapLines = new List<string>();
-
-            // read from map file
-            using (FileStream fs = new FileStream(mapFile, FileMode.Open))
-            {
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    string line = sr.ReadLine();
-                    while (line != null)
-                    {
-                        mapLines.Add(line);
-                        line = sr.ReadLine();
-                    }
-                }
-            }
-
-            layout = new int[mapLines.Count, mapLines[0].Length];
-
-
-        }
         public Character LoadMap(string mapFile, GroupBox grpMap, Func<string, Bitmap> LoadImg)
         {
             // declare and initialize locals
@@ -95,9 +69,16 @@ namespace GameLibrary
                 foreach (char c in mapLine)
                 {
                     char val = c;
-                    layout[i, j] = (val == '3' ? 1 : 0);
+                    if (val == '3' || val == '7' || val == '8' || val == '9' || val == 'a')
+                    {
+                        layout[i, j] = 1;
+                    }
+                    else
+                    {
+                        layout[i, j] = 0;
+                    }
                     PictureBox pb = CreateMapCell(val, LoadImg);
-                    if (val == '1')
+                    if (val == 'z')
                     {
                         CharacterStartRow = i;
                         CharacterStartCol = j;
@@ -222,7 +203,7 @@ namespace GameLibrary
                     };
                     break;
                 // quit
-                case '7':
+                case '8':
                     result = new PictureBox()
                     {
                         BackgroundImage = LoadImg("Desk2"),
@@ -232,7 +213,7 @@ namespace GameLibrary
                     };
                     break;
                 // quit
-                case '8':
+                case '7':
                     result = new PictureBox()
                     {
                         BackgroundImage = LoadImg("Desk1"),
@@ -282,7 +263,7 @@ namespace GameLibrary
                 case 'z':
                     result = new PictureBox()
                     {
-                        BackgroundImage = LoadImg("character"),
+                        BackgroundImage = LoadImg("Character1"),
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Width = BLOCK_SIZE,
                         Height = BLOCK_SIZE
@@ -304,7 +285,7 @@ namespace GameLibrary
         {
             if (pos.row < 0 || pos.row >= NumRows ||
                 pos.col < 0 || pos.col >= NumCols ||
-                layout[pos.row, pos.col] == '3')
+                layout[pos.row, pos.col] == 1)
             {
                 return false;
             }
@@ -320,5 +301,15 @@ namespace GameLibrary
             return new Position(p.row * BLOCK_SIZE + TOP_PAD, p.col * BLOCK_SIZE + BOUNDARY_PAD);
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public bool IsNextLevel(Position pos)
+        {
+            return (layout[pos.row, pos.col] == '1');
+        }
+
+        public bool TryingToExit(Position pos)
+        {
+            return (layout[pos.row, pos.col] == '5');
+        }
     }
 }

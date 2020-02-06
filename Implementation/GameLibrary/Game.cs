@@ -13,6 +13,7 @@ namespace GameLibrary
         LOADING,
         TITLE_SCREEN,
         UPGRADE_SCREEN,
+        FIGHTING,
         ON_MAP,
         DEAD
     }
@@ -23,6 +24,7 @@ namespace GameLibrary
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public class Game
     {
+        private int NumLevels = 5;
         // Initialize the game object
         private static Game game;
 
@@ -30,10 +32,13 @@ namespace GameLibrary
         public Character Character { get; private set; }
         public GameState State { get; private set; }
 
+        public int Level { get; private set; }
+
         // Starts that bad boi up
         private Game()
         {
             State = GameState.LOADING;
+            Level = 1;
         }
 
         // Creates the game object on startup if not already initialized
@@ -54,6 +59,23 @@ namespace GameLibrary
         public void SetCharacter(Character character)
         {
             Character = character;
+        }
+
+    public void NextLevel()
+        {
+            if (Level < NumLevels)
+            {
+                Level++;
+
+            }
+        }
+
+        public void PreviousLevel()
+        {
+            if (Level > 1)
+            {
+                Level--;
+            }
         }
     }
 }

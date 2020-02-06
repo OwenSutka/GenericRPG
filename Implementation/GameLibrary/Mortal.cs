@@ -91,7 +91,7 @@ namespace GameLibrary
         public virtual void LevelUp()
         {
             // level increases
-            Level++;
+            //Level++;
 
             // health and mana
             MaxHealth += LVLINC_HEALTH;

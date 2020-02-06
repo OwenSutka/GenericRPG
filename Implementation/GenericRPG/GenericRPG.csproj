@@ -127,6 +127,8 @@
     <None Include="Resources\Desk3.png" />
     <None Include="Resources\Desk4.png" />
     <None Include="Resources\Chair.png" />
+    <None Include="Resources\Character1.png" />
+    <None Include="Resources\level1.txt" />
     <Content Include="Resources\levelup.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -137,9 +139,9 @@
     <None Include="Resources\gameover.jpg" />
     <None Include="Resources\character-levelup.jpg" />
     <None Include="Resources\character-levelup-animation.gif" />
-    <Content Include="Resources\level.txt">
+    <None Include="Resources\level.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
