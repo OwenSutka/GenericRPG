@@ -137,12 +137,12 @@ namespace GenericRPG
                         // check for enemy encounter
                         if (rand.NextDouble() < encounterChance)
                         {
-                            encounterChance = 0.0015;
+                            encounterChance = 0.15;
                             Game.GetGame().ChangeState(GameState.FIGHTING);
                         }
                         else
                         {
-                            encounterChance += 0.0005;
+                            encounterChance += 0.05;
                         }
                         if (game.State == GameState.FIGHTING)
                         {

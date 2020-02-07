@@ -71,7 +71,7 @@ namespace GameLibrary
                 foreach (char c in mapLine)
                 {
                     char val = c;
-                    if (val == '3' || val == '7' || val == '8' || val == '9' || val == 'a' || val == 'w')
+                    if (val == '3' || val == '7' || val == '8' || val == '9' || val == 'a' || val == 'w' || val == 'y')
                     {
                         layout[i, j] = 1;
                     }
@@ -186,6 +186,15 @@ namespace GameLibrary
                     result = new PictureBox()
                     {
                         BackgroundImage = LoadImg("Ramp2"),
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Width = BLOCK_SIZE,
+                        Height = BLOCK_SIZE
+                    };
+                    break;
+                case 'y':
+                    result = new PictureBox()
+                    {
+                        BackgroundImage = LoadImg("grass1"),
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Width = BLOCK_SIZE,
                         Height = BLOCK_SIZE

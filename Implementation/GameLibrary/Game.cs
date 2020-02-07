@@ -24,7 +24,7 @@ namespace GameLibrary
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public class Game
     {
-        private int NumLevels = 5;
+        private int NumLevels = 6;
         // Initialize the game object
         private static Game game;
 
